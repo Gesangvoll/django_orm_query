@@ -4,11 +4,11 @@ from .models import Player, Team, State, Color
 # Create your views here.
 
 def index(request):
-    query1(1, 10, 30, 0, 0, 40, 0, 0, 6, 0, 0, 5, 0, 0.0, 10.0, 0, 0.0, 10)
-    query2('Gold')
-    query3('FloridaState')
-    query4('FL', 'Maroon')
-    query5(8)
+    query1(1, 35, 40, 0, 0, 40, 0, 0, 6, 0, 0, 5, 0, 0.0, 10.0, 0, 0.0, 10.0);
+    query2('LightBlue');
+    query3('Duke');
+    query4('NC', 'LightBlue');
+    query5(8);
     return HttpResponse("Hello, world. You're at the query index.")
 
 
@@ -42,7 +42,7 @@ def query1(use_mpg, min_mpg, max_mpg, use_ppg, min_ppg, max_ppg, use_rpg, min_rp
 def query2(team_color):
     color = Color.objects.get(name=team_color)
     result = Team.objects.filter(color_id=color.color_id).values_list('name')
-    print('Name')
+    print('NAME')
     for record in result:
         for value in record:
             print(value)
@@ -73,7 +73,7 @@ def query4(team_state, team_color):
 def query5(num_wins):
     teams = Team.objects.filter(wins__gte=num_wins).values_list('team_id')
     result = Player.objects.filter(team_id__in=teams).values_list('first_name', 'last_name', 'team__name', 'team__wins')
-    print('FIRST_NAME LAST_NAME TEAM_NAME WINS')
+    print('FIRST_NAME LAST_NAME NAME WINS')
     for record in result:
         for value in record:
             print(str(value)+' ', end='')
